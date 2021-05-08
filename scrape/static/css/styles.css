@@ -1,0 +1,172 @@
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+body{
+    background-color: #90BAE6;
+}
+
+/* big container */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* heading */
+
+h1{
+    color: white;
+    padding: 2rem;
+    font-size: 3rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-align: center;
+
+}
+
+.heading-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.home-starred{
+    
+    position: absolute;
+    right: 150px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    outline: none;
+    margin-bottom: 0.8rem;
+    
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+/* HERO IMAGE */
+
+.main-img{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    width:55%;
+    height: auto;
+ 
+}
+
+
+/* FORM */
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding: 2rem;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+
+.job-title, .location-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type=text]{
+    border-radius: 50px;
+    height: 3.125rem;
+    width: 27.875rem;
+    border: none;
+    background: #B5D4F4 url('/static/images/search.png') no-repeat;
+    background-size: 20px auto;
+    background-position: 3% 50%;
+    text-indent: 12%;
+    font-size: 1.1rem;
+    outline: none;
+  
+}
+
+input[type=submit]{
+ border-radius: 50px;
+ border: none;
+ background-color: white;
+ width: 11.063rem;
+ height: 3.563rem;
+margin-top: 2rem;
+font-size: 2.25rem;
+font-family: 'Poppins-Light', sans-serif;
+cursor: pointer;
+    
+}
+
+label{
+    color: white;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    font-family: 'Poppins-Light', sans-serif;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* FOOTER TEXTÍ */
+
+.footer-text{
+    width: 80%;
+    padding-top: 1rem;
+}
+
+p{
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+ 
+}
+
+
+
+/* FONTS */
+@font-face {
+    font-family: 'Roboto';
+    src:  url('fonts/Roboto/Roboto-Regular.ttf') ,
+     
+  }
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('fonts/Poppins/Poppins-Light.ttf');
+}
