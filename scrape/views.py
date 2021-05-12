@@ -921,49 +921,49 @@ def get_job_title_and_location(request):
 
 def get_html_response_indeed(job_title, location):
 
-    random_number = (random.randrange(len(new_user_agents)))
+#     random_number = (random.randrange(len(new_user_agents)))
 
-    user_agent_value = new_user_agents[random_number]
-
-
-    headers = {'User-Agent': f'{user_agent_value}'}
-
-    print (headers)
+#     user_agent_value = new_user_agents[random_number]
 
 
-    indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
+#     headers = {'User-Agent': f'{user_agent_value}'}
 
-    s = requests.Session()
+#     print (headers)
 
-    html_data = s.get(indeed_link, headers=headers)
 
-    html_data = html_data.content
+#     indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
 
-    file1 = open('test.html', 'w')
-    file1.write(str(html_data))
-    file1.close()
+#     s = requests.Session()
 
-    soup = bs(html_data, 'lxml')
+#     html_data = s.get(indeed_link, headers=headers)
+
+#     html_data = html_data.content
+
+#     file1 = open('test.html', 'w')
+#     file1.write(str(html_data))
+#     file1.close()
+
+#     soup = bs(html_data, 'lxml')
     
-    soup.prettify()
+#     soup.prettify()
 
     
-    mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
+#     mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
 
 
 
 
-    for i in mydivs:
-        title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
+#     for i in mydivs:
+#         title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
 
-        company = (i.find('span', {'class': 'company'})).text
+#         company = (i.find('span', {'class': 'company'})).text
 
-        location = (i.find('span', {'class': 'location'})).text
+#         location = (i.find('span', {'class': 'location'})).text
 
 
        
 
-        Job(title.text, company, location, f"https://indeed.com{title['href']}")
+#         Job(title.text, company, location, f"https://indeed.com{title['href']}")
            
 
     
