@@ -75,7 +75,9 @@ def get_html_response_indeed(job_title, location):
     
     soup.prettify()
     
-    mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
+    if soup != Null:
+    
+        mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
 
 
 
