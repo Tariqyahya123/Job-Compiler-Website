@@ -947,33 +947,36 @@ def get_html_response_indeed(job_title, location):
     print(soup.prettify())
     
     title = soup.find('title')
+    
+    if (title.string == 'hCaptcha solve page'):
+        return
 
-
-    print(title.string) # Prints the tag string content
+    else:
+   
 
     
-    mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
+        mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
 
 
 
 
-    for i in mydivs:
-        title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
+        for i in mydivs:
+            title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
 
-        company = (i.find('span', {'class': 'company'})).text
+            company = (i.find('span', {'class': 'company'})).text
 
-        location = (i.find('span', {'class': 'location'})).text
-
-
-       
-
-        Job(title.text, company, location, f"https://indeed.com{title['href']}")
-           
-
-    
+            location = (i.find('span', {'class': 'location'})).text
 
 
-    return 
+
+
+            Job(title.text, company, location, f"https://indeed.com{title['href']}")
+
+
+
+
+
+        return 
 
 
 def get_html_response_linkedin(job_title, location):
