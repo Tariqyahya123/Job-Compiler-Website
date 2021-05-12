@@ -86,6 +86,8 @@ def get_html_response_indeed(job_title, location):
         company = (i.find('span', {'class': 'company'})).text
 
         location = (i.find('span', {'class': 'location'})).text
+        
+        print('LOCATION', location)
 
 
        
