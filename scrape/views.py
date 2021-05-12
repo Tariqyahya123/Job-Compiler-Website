@@ -86,10 +86,12 @@ def get_html_response_indeed(job_title, location):
         title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
 
         company = (i.find('span', {'class': 'company'})).text
+        
+        print('LOCATION', location)
+
 
         location = (i.find('span', {'class': 'location'})).text
         
-        print('LOCATION', location)
 
 
        
