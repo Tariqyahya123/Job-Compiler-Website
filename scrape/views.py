@@ -939,13 +939,12 @@ def get_html_response_indeed(job_title, location):
 
     html_data = html_data.content
 
-    file1 = open('test.html', 'w')
-    file1.write(str(html_data))
-    file1.close()
 
     soup = bs(html_data, 'lxml')
     
     soup.prettify()
+    
+    print(soup.prettify())
 
     
     mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
