@@ -5,7 +5,7 @@ chardet==4.0.0
 Django==3.2
 gunicorn==20.1.0
 idna==2.10
-lxml @ file:///opt/concourse/worker/volumes/live/e9a191ad-c8f1-4bb7-7955-c333b8ab6c55/volume/lxml_1616443232489/work
+lxml 
 pytz==2021.1
 requests==2.25.1
 selenium==3.141.0
