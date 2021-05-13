@@ -928,6 +928,7 @@ def get_html_response_indeed(job_title, location):
 
     headers = {'User-Agent': f'{user_agent_value}'}
 
+    print (headers)
 
 
     indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
@@ -936,42 +937,46 @@ def get_html_response_indeed(job_title, location):
 
     html_data = s.get(indeed_link, headers=headers)
 
-    print('HEADERS',html_data.request.headers)
-
-
     html_data = html_data.content
 
-    file1 = open('test.html', 'w')
-    file1.write(str(html_data))
-    file1.close()
 
     soup = bs(html_data, 'lxml')
     
     soup.prettify()
+    
+    print(soup.prettify())
+    
+    title = soup.find('title')
+    
+    if (title.string == 'hCaptcha solve page'):
+        return
+
+    else:
+   
 
     
-    mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
+        mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
 
 
 
 
-    for i in mydivs:
-        title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
+        for i in mydivs:
+            title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
 
-        company = (i.find('span', {'class': 'company'})).text
+            company = (i.find('span', {'class': 'company'})).text
 
-        location = (i.find('span', {'class': 'location'})).text
-
-
-       
-
-        Job(title.text, company, location, f"https://indeed.com{title['href']}")
-           
-
-    
+            location = (i.find('span', {'class': 'location'})).text
 
 
-    return 
+
+
+            Job(title.text, company, location, f"https://indeed.com{title['href']}")
+
+
+
+
+
+        return 
 
 
 def get_html_response_linkedin(job_title, location):
@@ -989,8 +994,6 @@ def get_html_response_linkedin(job_title, location):
     s = requests.Session()
 
     html_data = s.get(linkedin_link, headers=headers)
-
-    print('HEADERS', html_data.request.headers)
 
     html_data = html_data.content
 

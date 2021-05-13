@@ -5,7 +5,7 @@ chardet==4.0.0
 Django==3.2
 gunicorn==20.1.0
 idna==2.10
-lxml
+lxml 
 pytz==2021.1
 requests==2.25.1
 selenium==3.141.0
@@ -13,3 +13,4 @@ soupsieve==2.2.1
 sqlparse==0.4.1
 urllib3==1.26.4
 whitenoise==5.2.0
+
