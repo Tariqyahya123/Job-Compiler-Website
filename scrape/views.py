@@ -1011,6 +1011,8 @@ def get_html_response_sudajobs(job_title,location):
 
 def get_html_response_indeed(job_title, location):
 
+    return
+
 
    
 
@@ -1158,6 +1160,8 @@ def get_html_response_indeed(job_title, location):
 
 
 def get_html_response_linkedin(job_title, location):
+
+    return
 
 
 

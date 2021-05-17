@@ -94,6 +94,8 @@ form{
     align-items: center;
 }
 
+
+
 input[type=text]{
     border-radius: 50px;
     height: 3.125rem;
@@ -235,6 +237,10 @@ p{
         font-size: 1.3rem;;
     }
 
+    img{
+        width:70%;
+    }
+
     .home-starred{
         font-size: 1.2rem;
         right:50px;
@@ -251,6 +257,10 @@ p{
           text-indent: 20%;
           background-size: 15px auto;
           background-position: 8% 50%;
+      }
+      img{
+          width: 80%;
+
       }
 
       h1{
@@ -287,6 +297,10 @@ p{
         width: 15rem;
         height: 2.5rem;
         
+    }
+
+    img{
+        width: 90%;
     }
 
     label{

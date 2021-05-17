@@ -69,6 +69,10 @@ input[type=text]{
   
 }
 
+input[type=text]::placeholder{
+    font-size: 0.8rem;
+}
+
 input[type=submit]{
     border-radius: 50px;
     border: none;
@@ -272,3 +276,255 @@ input[type=submit]{
     font-family: 'Poppins-Light';
     src: url('fonts/Poppins/Poppins-Light.ttf');
 }
+
+
+/* --------------------- RESPONSIVE WEBSITE ------------------ */
+
+@media screen and (max-width:1310px){
+    input[type=text]{
+        width: 18rem;
+    }
+}
+
+
+@media screen and (max-width:1100px){
+    input[type=text]{
+        width: 15rem;
+        margin-left: 2rem;
+        text-indent: 15%;
+    }
+    input[type=submit]{
+        right: 150px
+    }
+
+    .result{
+       height: 200px;
+       width: 312PX;
+ 
+    }
+
+    h1{
+        font-size: 1.2rem;
+
+    }
+
+    h2,h3{
+        font-size: 0.9rem;
+    }
+  
+}
+
+
+@media screen and (max-width:1024px){
+   #location_name{
+       margin-left: 100px;
+   }
+    input[type=submit]{
+        right: 100px
+    }
+
+    .result{
+       height: 200px;
+       width: 312PX;
+ 
+    }
+
+    h1{
+        font-size: 1.2rem;
+
+    }
+
+    h2,h3{
+        font-size: 0.9rem;
+    }
+  
+}
+
+@media screen and (max-width:800px){
+    #location_name{
+        margin-left: 100px;
+    }
+
+    input[type=text]{
+        width: 13rem;
+        background-size: 15px auto;
+        background-position: 5% 50%;
+        height: 2.3rem;
+        font-size: 1rem;
+
+    }
+
+    .starred-jobs{
+        
+        right: 50px;
+        width: 150px;
+        font-size: 0.9rem;
+
+        height: 2.3rem;
+        
+    }
+ 
+
+     input[type=submit]{
+         right: 90px;
+         height: 2.3rem;
+         width: 5rem;
+         font-size: 1.1rem;
+     }
+ 
+     .result{
+        height: 200px;
+        width: 312PX;
+  
+     }
+ 
+     h1{
+         font-size: 1.2rem;
+ 
+     }
+ 
+     h2,h3{
+         font-size: 0.9rem;
+     }
+
+     .results-display{
+
+        grid-template-columns: repeat(2, 1fr);
+    
+       
+    
+ 
+    }
+   
+ }
+
+
+ @media screen and (max-width:800px){
+
+    input[type=text]{
+        width: 8rem;
+        text-indent: 20%;
+        font-size: 1rem;
+    }
+
+    #job_name{
+        margin-right: 1.3rem;
+    }
+
+
+    input[type=submit]{
+        right: 80px;
+    }
+
+    .result{
+        height: 150px;
+        width: 236px;
+        padding: 13px;
+
+    }
+
+    h1{
+        font-size: 1rem;
+    }
+
+    h2,h3{
+        font-size: 0.8rem;
+    }
+
+ }
+
+
+
+ @media screen and (max-width:414px){
+     form{
+         flex-direction: row;
+         justify-content: space-around;
+         height: 50%;
+         width: 90%;
+    
+    
+         
+     }
+
+
+
+     input[type=text]{
+         margin-left: 30px;;
+         height: 2rem;
+         font-size: 0.9rem;
+         width: 8.5rem;
+         padding: 10px;
+         padding-left: 30px;
+         text-indent: 0;
+      
+     }
+     #job_name{
+        margin: 0;
+    }
+    #location_name{
+        margin: 0;
+        right:0;
+        left: 0;
+    }
+    input[type=submit]{
+        margin: 0;
+        right: 0;
+        left: 0;
+        height: 2rem;
+    }
+     .header{
+         height: 140px;
+         align-items: center;
+         justify-content: center;
+         flex-direction: column;
+         
+       
+     }
+     .starred-jobs{
+         right: 0;
+         left: 0;
+     }
+     .results-display{
+
+        grid-template-columns: repeat(1, 1fr);
+    
+       
+    
+ 
+    }
+    .result{
+        width: 80%;
+        height:160px;
+        padding: 1.2rem;
+    }
+
+    h1{
+        font-size: 1.1rem;
+    }
+    h2,h3{
+        font-size: 1rem;
+    }
+  
+
+ }
+
+
+ @media screen and (max-width:390px){
+
+input[type=text]{
+    width: 7rem;
+}
+
+
+ }
+
+
+ @media screen and (max-width:350px){
+
+    input[type=text]{
+        width: 6.2rem;
+    }
+    
+    
+     }
+    
