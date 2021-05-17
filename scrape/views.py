@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup as bs
 import json
 import lxml
 import random
+import geocoder
+import pycountry
+
+  
 
 # Create your views here.
 
@@ -880,6 +884,19 @@ def get_job_title_and_location(request):
 
     
 
+    g = geocoder.ip('me')
+
+    country = pycountry.countries.get(alpha_2=f'{g.country}')
+    country = country.name
+
+    
+   
+    
+
+    
+
+    
+
     
 
 
@@ -892,14 +909,59 @@ def get_job_title_and_location(request):
         location_space = request.POST.get('location_name')
         location = location_space.replace(' ', '+')
 
+
         
+
+
         
-        
-        get_html_response_indeed(job_title,location)
-        get_html_response_linkedin(job_title_space, location_space)
-        get_html_response_monster(job_title_space, location_space)
+        if location_space == '':
+
+            location_space = (country)
+            location = location_space.replace(' ', '+')
+
+
+            
+            if g.country == 'SD':
+
+                get_html_response_sudajobs(job_title, location)
+                location = 'United+States'
+                location_space = 'United States'
+
+                
+                
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+                
+
+            else:
+
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+
+        else:
+            if location_space == 'kharotum' or location_space == 'sudan':
+                get_html_response_sudajobs(job_title, location)
+
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+
+            else:
+
+            
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+
+
+
+
 
         context = {'jobs': Job.instances}
+
+
 
 
        
@@ -919,39 +981,139 @@ def get_job_title_and_location(request):
        
     return render(request, 'scrape/scrape.html', {'jobs': Job.instances})
 
-def get_html_response_indeed(job_title, location):
 
-    random_number = (random.randrange(len(new_user_agents)))
+def get_html_response_sudajobs(job_title,location):
 
-    user_agent_value = new_user_agents[random_number]
+    
 
-
-    headers = {'User-Agent': f'{user_agent_value}'}
-
-    print (headers)
-
-
-    indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
+    suda_link = f'https://sudajobs.com/?s={job_title}'
 
     s = requests.Session()
 
-    html_data = s.get(indeed_link, headers=headers)
+    html_data = s.get(suda_link)
 
     html_data = html_data.content
 
 
     soup = bs(html_data, 'lxml')
+
+    suda_articles = soup.find_all('article')
+
+    for i in suda_articles:
+       
+        Job(i.find('h2').text,'', 'Khartoum, Sudan', i.find('h2').find('a')['href'])
+
+    return 
+
+
+
+
+
+def get_html_response_indeed(job_title, location):
+
+
+   
+
+    g = geocoder.ip('me')
+
+    if location != 'United+States' :
+        
+        location = location.replace('+', ' ')
+
+
+        
+        specific_country = pycountry.countries.get(name=f'{location.title()}')
+
+        
+
+        if (specific_country) == None:
+            
+
+            specific_country = pycountry.countries.get(name='Sudan')
+
+            return 
+        specific_country = specific_country.alpha_2
+        print(specific_country)
+
+        g.country = specific_country
+
+        
+
     
-    soup.prettify()
+
+
+
+
+
+
+
     
-    print(soup.prettify())
+
+
+
+    # random_number = (random.randrange(len(new_user_agents)))
+
+    # user_agent_value = new_user_agents[random_number]
+
+
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:78.0) Gecko/20100101 Firefox/78.0'}
+
+  
+
+
+    indeed_link = f'https://{g.country}.indeed.com/jobs?q={job_title}&l={location}'
+    
+    print(indeed_link)
+
+    
+    country_number = 0;
+
+
+
+
+    s = requests.Session()
+
+
+    try:
+        html_data = s.get(indeed_link, headers=headers)
+    except: 
+        indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
+        country_number= 1;
+
+    finally:
+        html_data = s.get(indeed_link, headers=headers)
+
+
+
+
+    print (indeed_link)
+
+    html_data = html_data.content
+
+
+    soup = bs(html_data, 'lxml')
+
+
+
+
+    
+   
+
+    
     
     title = soup.find('title')
+
+      
     
     if (title.string == 'hCaptcha solve page'):
+
+
+        
         return
 
     else:
+
+        
    
 
     
@@ -965,12 +1127,28 @@ def get_html_response_indeed(job_title, location):
 
             company = (i.find('span', {'class': 'company'})).text
 
-            location = (i.find('span', {'class': 'location'})).text
+
+
+            if (country_number==0):
+                try:
+                    location = (i.find('span', {'class': 'location accessible-contrast-color-location'})).text
+                except:
+                    location = (i.find('div', {'class': 'location accessible-contrast-color-location'})).text
 
 
 
+
+            
+
+            else:
+                location = (i.find('span', {'class': 'location'})).text
+
+
+
+            print (title.text, company, location, f"https://indeed.com{title['href']}")
 
             Job(title.text, company, location, f"https://indeed.com{title['href']}")
+
 
 
 
@@ -980,6 +1158,8 @@ def get_html_response_indeed(job_title, location):
 
 
 def get_html_response_linkedin(job_title, location):
+
+
 
     random_number = (random.randrange(len(new_user_agents)))
 
@@ -999,7 +1179,7 @@ def get_html_response_linkedin(job_title, location):
 
     soup = bs(html_data, 'html.parser')
 
- 
+
     
 
 
@@ -1011,7 +1191,18 @@ def get_html_response_linkedin(job_title, location):
 
 
 
+    if (soup.find_all('a',{'class':'result-card__full-card-link'})) == []:
 
+        titles = soup.find_all('a', {'class': 'base-card__full-link'})
+
+        companies = soup.find_all('a', {'class': 'job-search-card__subtitle' } )
+
+
+        locations = soup.find_all('span', {'class':'job-search-card__location'})
+
+
+
+   
     
 
  
@@ -1023,6 +1214,7 @@ def get_html_response_linkedin(job_title, location):
 
 
     for i,j,k in zip(titles, companies, locations):
+        
         Job(i.text,j.text,k.text, i["href"])
 
 
@@ -1045,11 +1237,14 @@ def get_html_response_linkedin(job_title, location):
     
     
 def get_html_response_monster(job_title, location):
+
+
+
     monster_link =  f'https://services.monster.io/jobs-svx-service/v2/monster/jobs-search/samsearch/en-us'
 
     
 
-    data = {"jobQuery":{"locations":[{"address":location,"country": 'us'}],"excludeJobs":[],"companyDisplayNames":[],"query":job_title,"employmentTypes":[]},"offset":0,"pageSize":10,"searchId":"","fingerprintId":"7effdce6f8d233f79d467aeac972bfc5","jobAdsRequest":{"position":[1,2,3,4,5,6,7,8,9,10],"placement":{"component":"JSR_SPLIT_VIEW","appName":"monster"}}}
+    data = {"jobQuery":{"locations":[{"address":location,"country": 'us'}],"excludeJobs":[],"companyDisplayNames":[],"query":job_title,"employmentTypes":[]},"offset":0,"pageSize":100,"searchId":"","fingerprintId":"7effdce6f8d233f79d467aeac972bfc5","jobAdsRequest":{"position":[1,2,3,4,5,6,7,8,9,10],"placement":{"component":"JSR_SPLIT_VIEW","appName":"monster"}}}
 
 
 
@@ -1100,10 +1295,24 @@ def get_html_response_monster(job_title, location):
 
 def get_results(request, context):
     
-    if request.method == 'POST' and 'LOL' in request.POST:
+    if request.method == 'POST' and 'home-page' in request.POST:
         return render(request, 'scrape/results.html', context)
 
     if request.method == 'POST' and 'results-page' in request.POST:
+
+
+        
+        g = geocoder.ip('me')
+
+        country = pycountry.countries.get(alpha_2=f'{g.country}')
+        country = country.name
+        
+
+
+
+
+
+
 
         Job.instances = []
 
@@ -1115,16 +1324,65 @@ def get_results(request, context):
 
         
         
+        # get_html_response_sudajobs(job_title, location)
+        # get_html_response_indeed(job_title,location)
+        # get_html_response_linkedin(job_title_space, location_space)
+        # get_html_response_monster(job_title_space, location_space)
+
+        if location_space == '':
+
+            location_space = (country)
+            location = location_space.replace(' ', '+')
+
+
+            
+            if g.country == 'SD':
+
+                get_html_response_sudajobs(job_title, location)
+                location = 'United+States'
+                location_space = 'United States'
+
+                
+                
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+                
+
+            else:
+
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+
+        else:
+            if location_space == 'kharotum' or location_space == 'sudan':
+                get_html_response_sudajobs(job_title, location)
+
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+
+            else:
+
+            
+                get_html_response_indeed(job_title,location)
+                get_html_response_linkedin(job_title_space, location_space)
+                get_html_response_monster(job_title_space, location_space)
+
+
+
+        context = {'jobs': Job.instances}
         
-        get_html_response_indeed(job_title,location)
-        get_html_response_linkedin(job_title_space, location_space)
-        get_html_response_monster(job_title_space, location_space)
 
         return render(request, 'scrape/results.html', {'jobs' :Job.instances})
 
 def get_starred(request):
 
     return render(request, 'scrape/starred.html')
+
+
+
 
 
 

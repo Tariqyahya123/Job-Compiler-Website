@@ -149,6 +149,7 @@ p{
     color: white;
     font-size: 1.5rem;
     font-family: 'Poppins', sans-serif;
+    font-weight: 200;
  
 }
 
@@ -170,3 +171,191 @@ p{
     font-family: 'Poppins-Light';
     src: url('fonts/Poppins/Poppins-Light.ttf');
 }
+
+
+/* --------------- MEDIA QUERY --------------------- */
+
+@media screen and (max-width:1250px){
+    input[type=text]{
+        border-radius: 50px;
+        height: 3.125rem;
+        width: 20.875rem;
+        border: none;
+        background: #B5D4F4 url('/static/images/search.png') no-repeat;
+        background-size: 20px auto;
+        background-position: 3% 50%;
+        text-indent: 12%;
+        font-size: 1.1rem;
+        outline: none;
+      
+    }
+  }
+@media screen and (max-width:950px){
+    .home-starred{
+    
+        right: 100px;
+    }
+    *{
+        margin-bottom: 0.7rem;
+    }
+
+    input[type=text]{
+        width: 18rem;
+      
+    }
+
+    p{
+        font-size: 1.3rem;
+    }
+
+    h1{
+        font-size: 2.5rem;
+    }
+
+    .home-starred{
+        font-size: 1.3rem;
+    }
+
+    input[type=submit]{
+        height: 3rem;
+        font-size: 1.8rem;
+      
+    }
+
+
+  }
+
+  @media screen and (max-width:950px){
+    input[type=text]{
+        width: 15rem;
+        height: 2.8rem;
+      
+    }
+    label {
+        font-size: 1.3rem;;
+    }
+
+    .home-starred{
+        font-size: 1.2rem;
+        right:50px;
+    }
+    .footer-text{
+        margin-top: 3rem;
+    }
+  
+  }
+
+  @media screen and (max-width:650px){
+      input[type=text]{
+          width: 11rem;
+          text-indent: 20%;
+          background-size: 15px auto;
+          background-position: 8% 50%;
+      }
+
+      h1{
+          font-size: 2rem;
+      }
+
+      .home-starred{
+          font-size: 1rem;
+      }
+
+  }
+
+  @media screen and (max-width:550px){
+      .form{
+         flex-direction: column;
+      }
+
+      input[type=text]{
+          width: 15rem;
+          font-size: 1rem;
+      }
+      p{
+          font-size: 1.1rem;
+      }
+  }
+
+
+  @media screen and (max-width:480px){
+    .form{
+       flex-direction: column;
+    }
+
+    input[type=text]{
+        width: 15rem;
+        height: 2.5rem;
+        
+    }
+
+    label{
+        font-size: 1.2rem;
+    }
+
+    .home-starred{
+        right: 30px;
+    }
+
+    input[type=submit]{
+        width: 7rem;
+    }
+
+    .footer-text{
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:400px){
+    h1{
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width:380px){
+    h1{
+        font-size: 1.3rem;
+    }
+
+    .home-starred{
+        font-size: 0.8rem;
+        right: 20px;
+    }
+    
+    form{
+        padding-bottom: 0.5rem;
+    }
+   
+
+    label{
+        font-size: 1.2rem;;
+    }
+    input[type=text]{
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    input[type=submit]{
+        margin-top: 0.2rem;
+        height: 2.5rem;
+        width: 5rem;
+        font-size: 1rem;
+        
+    }
+
+    p{
+        font-size: 0.8rem;
+      
+    }
+
+    .footer-text{
+        padding-top: 0rem;
+        margin-top: 0rem;
+    
+    }
+}
+
+
+
+
+    
