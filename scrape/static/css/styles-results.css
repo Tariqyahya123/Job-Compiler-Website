@@ -433,6 +433,84 @@ input[type=submit]{
 
  }
 
+ @media screen and (max-width:520px){
+
+    form{
+        flex-direction: row;
+        justify-content: space-around;
+        height: 50%;
+        width: 90%;
+   
+   
+        
+    }
+
+
+
+    input[type=text]{
+        margin-left: 30px;;
+        height: 2rem;
+        font-size: 0.9rem;
+        width: 8.5rem;
+        padding: 10px;
+        padding-left: 30px;
+        text-indent: 0;
+     
+    }
+    #job_name{
+       margin: 0;
+   }
+   #location_name{
+       margin: 0;
+       right:0;
+       left: 0;
+   }
+   input[type=submit]{
+       margin: 0;
+       right: 0;
+       left: 0;
+       height: 2rem;
+   }
+    .header{
+        height: 140px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+      
+    }
+    .starred-jobs{
+        right: 0;
+        left: 0;
+    }
+    .results-display{
+
+       grid-template-columns: repeat(1, 1fr);
+   
+      
+   
+
+   }
+   .result{
+       width: 80%;
+       height:160px;
+       padding: 1.2rem;
+   }
+
+   h1{
+       font-size: 1.1rem;
+   }
+   h2,h3{
+       font-size: 1rem;
+   }
+ 
+
+
+
+    
+    
+     }
+
 
 
  @media screen and (max-width:414px){
