@@ -211,7 +211,7 @@ p{
     }
 
     h1{
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
 
     .home-starred{
@@ -264,7 +264,7 @@ p{
       }
 
       h1{
-          font-size: 2rem;
+          font-size: 2.3rem;
       }
 
       .home-starred{
@@ -284,6 +284,9 @@ p{
       }
       p{
           font-size: 1.1rem;
+      }
+      h1{
+          font-size: 2.1rem;
       }
   }
 
@@ -308,7 +311,8 @@ p{
     }
 
     .home-starred{
-        right: 30px;
+        right: 25px;
+        font-size: 1rem;
     }
 
     input[type=submit]{
@@ -322,13 +326,17 @@ p{
 
 @media screen and (max-width:400px){
     h1{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+    }
+    .home-starred{
+        font-size: 0.8rem;
+        right: 25px;
     }
 }
 
 @media screen and (max-width:380px){
     h1{
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .home-starred{

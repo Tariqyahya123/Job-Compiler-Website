@@ -1011,7 +1011,7 @@ def get_html_response_sudajobs(job_title,location):
 
 def get_html_response_indeed(job_title, location):
 
-    return
+  
 
 
    
@@ -1035,7 +1035,6 @@ def get_html_response_indeed(job_title, location):
 
             return 
         specific_country = specific_country.alpha_2
-        print(specific_country)
 
         g.country = specific_country
 
@@ -1096,6 +1095,14 @@ def get_html_response_indeed(job_title, location):
     soup = bs(html_data, 'lxml')
 
 
+    print ('\n \n \n \n \n \n')
+
+    print (soup.prettify())
+
+    print ('\n \n \n \n \n \n')
+
+
+
 
 
     
@@ -1147,7 +1154,6 @@ def get_html_response_indeed(job_title, location):
 
 
 
-            print (title.text, company, location, f"https://indeed.com{title['href']}")
 
             Job(title.text, company, location, f"https://indeed.com{title['href']}")
 
@@ -1161,7 +1167,7 @@ def get_html_response_indeed(job_title, location):
 
 def get_html_response_linkedin(job_title, location):
 
-    return
+
 
 
 
