@@ -1011,153 +1011,156 @@ def get_html_response_sudajobs(job_title,location):
 
 def get_html_response_indeed(job_title, location):
 
-  
-
-
-   
-
-    g = geocoder.ip('me')
-
-    if location != 'United+States' :
-        
-        location = location.replace('+', ' ')
-
-
-        
-        specific_country = pycountry.countries.get(name=f'{location.title()}')
-
-        
-
-        if (specific_country) == None:
-            
-
-            specific_country = pycountry.countries.get(name='Sudan')
-
-            return 
-        specific_country = specific_country.alpha_2
-
-        g.country = specific_country
-
-        
-
-    
-
-
-
-
-
-
-
-    
-
-
-
-    # random_number = (random.randrange(len(new_user_agents)))
-
-    # user_agent_value = new_user_agents[random_number]
-
-
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:78.0) Gecko/20100101 Firefox/78.0'}
+    try: 
 
   
 
 
-    indeed_link = f'https://{g.country}.indeed.com/jobs?q={job_title}&l={location}'
-    
-    print(indeed_link)
-
-    
-    country_number = 0;
-
-
-
-
-    s = requests.Session()
-
-
-    try:
-        html_data = s.get(indeed_link, headers=headers)
-    except: 
-        indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
-        country_number= 1;
-
-    finally:
-        html_data = s.get(indeed_link, headers=headers)
-
-
-
-
-    print (indeed_link)
-
-    html_data = html_data.content
-
-
-    soup = bs(html_data, 'lxml')
-
-
-    print ('\n \n \n \n \n \n')
-
-    print (soup.prettify())
-
-    print ('\n \n \n \n \n \n')
-
-
-
-
-
-    
    
 
-    
-    
-    title = soup.find('title')
+        g = geocoder.ip('me')
 
-      
-    
-    if (title.string == 'hCaptcha solve page'):
-
-
-        
-        return
-
-    else:
-
-        
-   
-
-    
-        mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
-
-
-
-
-        for i in mydivs:
-            title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
-
-            company = (i.find('span', {'class': 'company'})).text
-
-
-
-            if (country_number==0):
-                try:
-                    location = (i.find('span', {'class': 'location accessible-contrast-color-location'})).text
-                except:
-                    location = (i.find('div', {'class': 'location accessible-contrast-color-location'})).text
-
-
+        if location != 'United+States' :
+            
+            location = location.replace('+', ' ')
 
 
             
+            specific_country = pycountry.countries.get(name=f'{location.title()}')
 
-            else:
-                location = (i.find('span', {'class': 'location'})).text
+            
+
+            if (specific_country) == None:
+                
+
+                specific_country = pycountry.countries.get(name='Sudan')
+
+                return 
+            specific_country = specific_country.alpha_2
+
+            g.country = specific_country
+
+            
+
+        
 
 
 
 
-            Job(title.text, company, location, f"https://indeed.com{title['href']}")
 
 
+
+        
+
+
+
+        # random_number = (random.randrange(len(new_user_agents)))
+
+        # user_agent_value = new_user_agents[random_number]
+
+
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:78.0) Gecko/20100101 Firefox/78.0'}
+
+    
+
+
+        indeed_link = f'https://{g.country}.indeed.com/jobs?q={job_title}&l={location}'
+        
+        print(indeed_link)
+
+        
+        country_number = 0;
+
+
+
+
+        s = requests.Session()
+
+
+        try:
+            html_data = s.get(indeed_link, headers=headers)
+        except: 
+            indeed_link = f'https://www.indeed.com/jobs?q={job_title}&l={location}'
+            country_number= 1;
+
+        finally:
+            html_data = s.get(indeed_link, headers=headers)
+
+
+
+
+        print (indeed_link)
+
+        html_data = html_data.content
+
+
+        soup = bs(html_data, 'lxml')
+
+
+        print ('\n \n \n \n \n \n')
+
+        print (soup.prettify())
+
+        print ('\n \n \n \n \n \n')
+
+
+
+
+
+        
+    
+
+        
+        
+        title = soup.find('title')
+
+        
+        
+        if (title.string == 'hCaptcha solve page'):
+
+
+            
+            return
+
+        else:
+
+            
+    
+
+        
+            mydivs = soup.select("body > table#resultsBody > tbody >tr > td > table ")[0].select('div.result')
+
+
+
+
+            for i in mydivs:
+                title = (i.find('a', {'class': 'jobtitle turnstileLink'}))
+
+                company = (i.find('span', {'class': 'company'})).text
+
+
+
+                if (country_number==0):
+                    try:
+                        location = (i.find('span', {'class': 'location accessible-contrast-color-location'})).text
+                    except:
+                        location = (i.find('div', {'class': 'location accessible-contrast-color-location'})).text
+
+
+
+
+                
+
+                else:
+                    location = (i.find('span', {'class': 'location'})).text
+
+
+
+
+                Job(title.text, company, location, f"https://indeed.com{title['href']}")
+
+    except:
+        return    
 
 
 
