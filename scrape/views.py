@@ -1190,6 +1190,13 @@ def get_html_response_linkedin(job_title, location):
     soup = bs(html_data, 'html.parser')
 
 
+    print ('\n \n \n \n \n \n')
+
+    print (soup.prettify())
+
+    print ('\n \n \n \n \n \n')
+
+
     
 
 
