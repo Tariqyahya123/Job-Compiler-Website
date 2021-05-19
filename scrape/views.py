@@ -916,12 +916,12 @@ def get_job_title_and_location(request):
         
         if location_space == '':
 
-            location_space = (country)
+            location_space = ('United States')
             location = location_space.replace(' ', '+')
 
 
             
-            if g.country == 'SD':
+            if True:
 
                 get_html_response_sudajobs(job_title, location)
                 location = 'United+States'
@@ -941,7 +941,7 @@ def get_job_title_and_location(request):
                 get_html_response_monster(job_title_space, location_space)
 
         else:
-            if location_space == 'khartoum' or location_space == 'sudan':
+            if location_space == 'khartoum' or location_space == 'sudan' or location_space == 'Sudan' or location_space == 'Khartoum':
                 get_html_response_sudajobs(job_title, location)
 
                 get_html_response_indeed(job_title,location)
@@ -1318,8 +1318,7 @@ def get_results(request, context):
         g = geocoder.ip('me')
 
         country = pycountry.countries.get(alpha_2=f'{g.country}')
-        country = country.name
-        
+      
 
 
 
@@ -1344,7 +1343,7 @@ def get_results(request, context):
 
         if location_space == '':
 
-            location_space = (country)
+            location_space = ('United States')
             location = location_space.replace(' ', '+')
 
 
@@ -1369,7 +1368,7 @@ def get_results(request, context):
                 get_html_response_monster(job_title_space, location_space)
 
         else:
-            if location_space == 'khartoum' or location_space == 'sudan':
+            if location_space == 'khartoum' or location_space == 'sudan' or location_space == 'Sudan' or location_space == 'Khartoum':
                 get_html_response_sudajobs(job_title, location)
 
                 get_html_response_indeed(job_title,location)
