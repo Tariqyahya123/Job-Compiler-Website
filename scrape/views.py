@@ -961,6 +961,10 @@ def get_job_title_and_location(request):
 
         context = {'jobs': Job.instances}
 
+        print(len(Job.instances))
+
+    
+
 
 
 
@@ -1066,7 +1070,6 @@ def get_html_response_indeed(job_title, location):
 
         indeed_link = f'https://{g.country}.indeed.com/jobs?q={job_title}&l={location}'
         
-        print(indeed_link)
 
         
         country_number = 0;
@@ -1089,19 +1092,12 @@ def get_html_response_indeed(job_title, location):
 
 
 
-        print (indeed_link)
 
         html_data = html_data.content
 
 
         soup = bs(html_data, 'lxml')
 
-
-        print ('\n \n \n \n \n \n')
-
-        print (soup.prettify())
-
-        print ('\n \n \n \n \n \n')
 
 
 
@@ -1192,12 +1188,6 @@ def get_html_response_linkedin(job_title, location):
 
     soup = bs(html_data, 'html.parser')
 
-
-    print ('\n \n \n \n \n \n')
-
-    print (soup.prettify())
-
-    print ('\n \n \n \n \n \n')
 
 
     
@@ -1376,7 +1366,7 @@ def get_results(request, context):
                 get_html_response_monster(job_title_space, location_space)
 
         else:
-            if location_space == 'kharotum' or location_space == 'sudan':
+            if location_space == 'khartoum' or location_space == 'sudan':
                 get_html_response_sudajobs(job_title, location)
 
                 get_html_response_indeed(job_title,location)
@@ -1393,6 +1383,8 @@ def get_results(request, context):
 
 
         context = {'jobs': Job.instances}
+
+        print(len(Job.instances))
         
 
         return render(request, 'scrape/results.html', {'jobs' :Job.instances})
