@@ -963,6 +963,9 @@ def get_job_title_and_location(request):
 
         print(len(Job.instances))
 
+        if (len(Job.instances)) == 0:
+            return render(request, 'scrape/results-none.html')
+
     
 
 
