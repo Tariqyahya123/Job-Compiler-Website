@@ -887,7 +887,7 @@ def get_job_title_and_location(request):
     g = geocoder.ip('me')
 
     country = pycountry.countries.get(alpha_2=f'{g.country}')
-    country = country.name
+    
 
     
    
