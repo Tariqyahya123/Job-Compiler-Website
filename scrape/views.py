@@ -941,7 +941,7 @@ def get_job_title_and_location(request):
                 get_html_response_monster(job_title_space, location_space)
 
         else:
-            if location_space == 'kharotum' or location_space == 'sudan':
+            if location_space == 'khartoum' or location_space == 'sudan':
                 get_html_response_sudajobs(job_title, location)
 
                 get_html_response_indeed(job_title,location)
